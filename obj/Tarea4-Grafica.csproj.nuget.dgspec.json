@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj",
+        "projectName": "Tarea4-Grafica",
+        "projectPath": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj",
+        "packagesPath": "C:\\Users\\CARLOS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CARLOS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "OpenTK": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
