@@ -195,7 +195,9 @@ namespace programGraph
                 if (e.Key == Key.Right) escenario.trasladarTodo(new Punto(0.2f, 0, 0));
                 if (e.Key == Key.Plus || e.Key == Key.KeypadPlus) escenario.escalarTodo(1.1f);
                 if (e.Key == Key.Minus || e.Key == Key.KeypadMinus) escenario.escalarTodo(0.9f);
-                if (e.Key == Key.R) escenario.rotarTodo(new Punto(0, 15, 0));
+                if (e.Key == Key.X) escenario.rotarTodo(new Punto(15, 0, 0));
+                if (e.Key == Key.Y) escenario.rotarTodo(new Punto(0, 15, 0));
+                if (e.Key == Key.Z) escenario.rotarTodo(new Punto(0,0, 15));
             }
             else if (escenario.GetObjetos().ContainsKey(objetoSeleccionado)) // Si hay un objeto seleccionado
             {
@@ -210,8 +212,12 @@ namespace programGraph
                 if (e.Key == Key.Minus || e.Key == Key.KeypadMinus)
                     escenario.escalarObjeto(objetoSeleccionado, 0.9f);
 
-                if (e.Key == Key.R)
+                if (e.Key == Key.X)
+                    escenario.rotarObjeto(objetoSeleccionado, new Punto(15, 0, 0));
+                if (e.Key == Key.Y)
                     escenario.rotarObjeto(objetoSeleccionado, new Punto(0, 15, 0));
+                if (e.Key == Key.Z)
+                    escenario.rotarObjeto(objetoSeleccionado, new Punto(0, 0, 15));
             }
         }
 
