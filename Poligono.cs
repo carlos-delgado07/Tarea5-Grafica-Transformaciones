@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using OpenTK.Graphics.OpenGL;
+using OpenTK;
 
 namespace programGraph
 {
@@ -42,15 +43,8 @@ namespace programGraph
             this.color = new float[] { 0.1f, 0.1f, 0.1f };
         }
 
-        public List<Punto> GetPuntos()
-        {
-            return puntos;
-        }
-
-        public float[] GetColor()
-        {
-            return color;
-        }
+        public List<Punto> GetPuntos() => puntos;
+        public float[] GetColor() => color;
 
         public Punto calcularCentroMasa()
         {
@@ -80,10 +74,64 @@ namespace programGraph
             GL.Flush();
         }
 
-        public void escalar(float factor) => throw new NotImplementedException();
-        public void rotar(Punto angulo) => throw new NotImplementedException();
-        public void setCentro(Punto centro) => throw new NotImplementedException();
-        public void trasladar(Punto valorTralado) => throw new NotImplementedException();
+        public void escalar(float factor)
+        {
+            var centro = this.calcularCentroMasa();
+            for (int i = 0; i < puntos.Count; i++)
+            {
+                puntos[i].X = centro.X + (puntos[i].X - centro.X) * factor;
+                puntos[i].Y = centro.Y + (puntos[i].Y - centro.Y) * factor;
+                puntos[i].Z = centro.Z + (puntos[i].Z - centro.Z) * factor;
+            }
+        }
+
+        public void rotar(Punto angulo)
+        {
+            var centro = this.calcularCentroMasa();
+
+            float radX = MathHelper.DegreesToRadians(angulo.X);
+            float radY = MathHelper.DegreesToRadians(angulo.Y);
+            float radZ = MathHelper.DegreesToRadians(angulo.Z);
+
+            for (int i = 0; i < puntos.Count; i++)
+            {
+                float x = puntos[i].X - centro.X;
+                float y = puntos[i].Y - centro.Y;
+                float z = puntos[i].Z - centro.Z;
+
+                float y1 = y * (float)Math.Cos(radX) - z * (float)Math.Sin(radX);
+                float z1 = y * (float)Math.Sin(radX) + z * (float)Math.Cos(radX);
+                y = y1; z = z1;
+
+                float x1 = x * (float)Math.Cos(radY) + z * (float)Math.Sin(radY);
+                z1 = -x * (float)Math.Sin(radY) + z * (float)Math.Cos(radY);
+                x = x1; z = z1;
+
+                x1 = x * (float)Math.Cos(radZ) - y * (float)Math.Sin(radZ);
+                y1 = x * (float)Math.Sin(radZ) + y * (float)Math.Cos(radZ);
+                x = x1; y = y1;
+
+                puntos[i].X = centro.X + x;
+                puntos[i].Y = centro.Y + y;
+                puntos[i].Z = centro.Z + z;
+            }
+        }
+
+        public void setCentro(Punto centro)
+        {
+            this.centro = centro;
+        }
+
+        public void trasladar(Punto valorTraslado)
+        {
+            foreach (var punto in puntos)
+            {
+                punto.X += valorTraslado.X;
+                punto.Y += valorTraslado.Y;
+                punto.Z += valorTraslado.Z;
+            }
+        }
+
         public Punto getCentro() => this.calcularCentroMasa();
     }
 }

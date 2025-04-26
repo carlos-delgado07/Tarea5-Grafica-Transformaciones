@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tarea4-Grafica")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2cb4c75da1248083aa6f243bc34c95cdfcf822e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+981c13d786c22c8e6277bea92f3fa33dd131ec86")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tarea4-Grafica")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tarea4-Grafica")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

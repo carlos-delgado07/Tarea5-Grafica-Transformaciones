@@ -15,9 +15,10 @@ namespace programGraph
         private float pitch = 0.0f; // Ángulo de rotación alrededor del eje X
         private float yaw = 0.0f;   // Ángulo de rotación alrededor del eje Y
         private float zoom = 5.0f;  // Distancia de la cámara
+        private string objetoSeleccionado = null;
 
         public Game(int width, int height)
-              : base(width, height, GraphicsMode.Default, " U 3D")
+              : base(width, height, GraphicsMode.Default, "U 3D")
         {
             VSync = VSyncMode.On; // Activamos la sincronización vertical para evitar desgarros
         }
@@ -34,7 +35,7 @@ namespace programGraph
             // Configuración de la proyección en perspectiva
             Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView(
                    MathHelper.DegreesToRadians(45.0f), // Ángulo de visión de 45 grados
-                   Width / (float)Height,               // Relación de aspecto
+                   Width / (float)Height,              // Relación de aspecto
                    0.1f,                               // Distancia más cercana de la cámara
                    100.0f                              // Distancia más lejana de la cámara
                );
@@ -161,23 +162,58 @@ namespace programGraph
             GL.Viewport(0, 0, Width, Height); // Ajustar el viewport
         }
         protected override void OnKeyDown(KeyboardKeyEventArgs e)
-{
-    base.OnKeyDown(e);
-
-    if (e.Key == Key.G)
-    {
-        Serializador.GuardarEscenario(escenario, "escenario1.json");
-    }
-
-    if (e.Key == Key.C)
-    {
-        var cargado = Serializador.CargarEscenario("escenario1.json");
-        if (cargado != null)
         {
-            escenario = cargado;
+            base.OnKeyDown(e);
+
+            // Guardar/Cargar
+            if (e.Key == Key.G)
+            {
+                Serializador.GuardarEscenario(escenario, "escenario1.json");
+            }
+
+            if (e.Key == Key.C)
+            {
+                var cargado = Serializador.CargarEscenario("escenario1.json");
+                if (cargado != null)
+                {
+                    escenario = cargado;
+                }
+            }
+
+            // Selección de objetos
+            if (e.Key == Key.Number1) objetoSeleccionado = "U1";
+            if (e.Key == Key.Number2) objetoSeleccionado = "U2";
+            if (e.Key == Key.Number3) objetoSeleccionado = "U3";
+            if (e.Key == Key.D) objetoSeleccionado = null; // Deseleccionar
+
+            // Transformación de objetos
+            if (objetoSeleccionado == null) // Si no hay objeto seleccionado, transformamos todos
+            {
+                if (e.Key == Key.Up) escenario.trasladarTodo(new Punto(0, 0.2f, 0));
+                if (e.Key == Key.Down) escenario.trasladarTodo(new Punto(0, -0.2f, 0));
+                if (e.Key == Key.Left) escenario.trasladarTodo(new Punto(-0.2f, 0, 0));
+                if (e.Key == Key.Right) escenario.trasladarTodo(new Punto(0.2f, 0, 0));
+                if (e.Key == Key.Plus || e.Key == Key.KeypadPlus) escenario.escalarTodo(1.1f);
+                if (e.Key == Key.Minus || e.Key == Key.KeypadMinus) escenario.escalarTodo(0.9f);
+                if (e.Key == Key.R) escenario.rotarTodo(new Punto(0, 15, 0));
+            }
+            else if (escenario.GetObjetos().ContainsKey(objetoSeleccionado)) // Si hay un objeto seleccionado
+            {
+                if (e.Key == Key.Up) escenario.trasladarObjeto(objetoSeleccionado, new Punto(0, 0.2f, 0));
+                if (e.Key == Key.Down) escenario.trasladarObjeto(objetoSeleccionado, new Punto(0, -0.2f, 0));
+                if (e.Key == Key.Left) escenario.trasladarObjeto(objetoSeleccionado, new Punto(-0.2f, 0, 0));
+                if (e.Key == Key.Right) escenario.trasladarObjeto(objetoSeleccionado, new Punto(0.2f, 0, 0));
+
+                if (e.Key == Key.Plus || e.Key == Key.KeypadPlus)
+                    escenario.escalarObjeto(objetoSeleccionado, 1.1f);
+
+                if (e.Key == Key.Minus || e.Key == Key.KeypadMinus)
+                    escenario.escalarObjeto(objetoSeleccionado, 0.9f);
+
+                if (e.Key == Key.R)
+                    escenario.rotarObjeto(objetoSeleccionado, new Punto(0, 15, 0));
+            }
         }
-    }
-}
 
     }
 }

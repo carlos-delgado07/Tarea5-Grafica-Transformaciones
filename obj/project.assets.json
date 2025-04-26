@@ -117,11 +117,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj",
+      "projectUniqueName": "C:\\Users\\CARLOS\\Desktop\\Tarea5-Grafica\\Tarea4-Grafica.csproj",
       "projectName": "Tarea4-Grafica",
-      "projectPath": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\Tarea4-Grafica.csproj",
+      "projectPath": "C:\\Users\\CARLOS\\Desktop\\Tarea5-Grafica\\Tarea4-Grafica.csproj",
       "packagesPath": "C:\\Users\\CARLOS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CARLOS\\Desktop\\Tarea4-Grafica\\obj\\",
+      "outputPath": "C:\\Users\\CARLOS\\Desktop\\Tarea5-Grafica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CARLOS\\AppData\\Roaming\\NuGet\\NuGet.Config",
